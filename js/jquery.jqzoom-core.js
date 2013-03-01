@@ -123,6 +123,7 @@
                     });
                 }
                 $(".zoomPad", el).bind('mouseenter mouseover', function (event) {
+                    $(document).trigger('jqzoom-thumb-mouseover');
                     img.attr('title', '');
                     $(el).attr('title', '');
                     el.zoom_active = true;
@@ -134,11 +135,14 @@
                     else {
                         obj.load();
                     }
+                    $(document).trigger('jqzoom-thumb-mouseover-image-showed');
                 });
                 $(".zoomPad", el).bind('mouseleave', function (event) {
+                    $(document).trigger('jqzoom-thumb-mouseleave');
                     obj.deactivate();
                 });
                 $(".zoomPad", el).bind('mousemove', function (e) {
+                    $(document).trigger('jqzoom-thumb-mousemove');
                     //prevent fast mouse mevements not to fire the mouseout event
                     if (e.pageX > smallimage.pos.r || e.pageX < smallimage.pos.l || e.pageY < smallimage.pos.t || e.pageY > smallimage.pos.b) {
                         lens.setcenter();
